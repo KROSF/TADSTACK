@@ -4,7 +4,7 @@
 template <typename tElemento >class Pila {
 
 public:
-    explicit Pila(unsigned TamaMax);
+    explicit Pila(unsigned TamaMax);        //CONSTRUCTOR
     Pila(const Pila& P);
     Pila& operator =(const Pila& P);
     bool vacia() const;
@@ -34,7 +34,7 @@ Pila<tElemento>::Pila(const Pila<tElemento>& P) :
         elementos[i] = P.elementos[i];
 }
 template <typename tElemento>
-Pila<tElemento>& Pila<tElemento>::operator =(const Pila<tElemento>& P) :
+Pila<tElemento>& Pila<tElemento>::operator =(const Pila<tElemento>& P)
 {
     if (this != &P) {
         if (Lmax != P.Lmax) {
