@@ -34,7 +34,7 @@ Pila<tElemento>::Pila(const Pila<tElemento>& P) :
         elementos[i] = P.elementos[i];
 }
 template <typename tElemento>
-Pila<tElemento>& Pila<tElemento>::operator =(const Pila<tElemento>& P) :
+Pila<tElemento>& Pila<tElemento>::operator =(const Pila<tElemento>& P)
 {
     if (this != &P) {
         if (Lmax != P.Lmax) {
