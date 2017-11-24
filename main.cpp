@@ -8,8 +8,7 @@ int main()
     cout<<shuffle(X);
     return 0;
 }
-bool shuffle (const string X)
-{
+bool shuffle (const string X){
     int i;
     Pila <char>P(X.length());
     for(i=0;i<X.length();i++)
