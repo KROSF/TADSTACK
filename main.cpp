@@ -59,6 +59,6 @@ bool shape(const string X)
 
         else sts = false;
     }
-
+//
     return sts;
 }
