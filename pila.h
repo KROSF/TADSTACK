@@ -1,4 +1,4 @@
-#ifndef TADSTACK_PILA_H
+/*#ifndef TADSTACK_PILA_H
 #define TADSTACK_PILA_H
 #include <cassert>
 template <typename tElemento >class Pila {
@@ -82,3 +82,4 @@ template <typename tElemento>
 inline Pila<tElemento>::~Pila()
 { delete[] elementos; }
 #endif //TADSTACK_PILA_H
+*/

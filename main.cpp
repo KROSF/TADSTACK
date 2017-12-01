@@ -1,10 +1,83 @@
 #include <iostream>
 #include "pila.h"
+#include "piladinamica.h"
+using namespace std;
+bool comprobarXY(string);
+int main()
+{
+    string X="Ab&cbA";
+    cout<<comprobarXY(X);
+}
+bool comprobarXY(string X)
+{
+    bool valido=true;
+    int i=0;
+    Pila<char> P;
+    while(X[i]!='&')
+    {
+        P.push(X[i]);
+        i++;
+    }
+    if((i>=(X.length()/2)+1)||i<X.length()/2)
+    {
+        valido=false;
+    }
+    else
+    {
+        for (i=i+1; i < X.length(); i++)
+        {
+            if (P.tope() != X[i])
+                valido = false;
+            P.pop();
+        }
+
+    }
+    return valido;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//VERSION PSEUDOESTATICA
+/*
 using namespace std;
 bool shuffle (const string );
 int main()
 {
-    string X="abc&cba";
+    string X="abccba";
     if(shuffle(X))
     {
         cout<<"La cadena es de la forma X&Y"<<endl;
@@ -43,4 +116,5 @@ bool shuffle (const string X)
         P.pop();
     }}
     return valido;
-}
+}*/
+
