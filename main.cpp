@@ -5,7 +5,7 @@ using namespace std;
 bool comprobarXY(string);
 int main()
 {
-    string X="Ab&cbA";
+    string X="Abc&cbA";
     cout<<comprobarXY(X);
 }
 bool comprobarXY(string X)
@@ -24,7 +24,7 @@ bool comprobarXY(string X)
     }
     else
     {
-        for (i=i+1; i < X.length(); i++)
+        for (i=i+1; !P.vacia(); i++)
         {
             if (P.tope() != X[i])
                 valido = false;
