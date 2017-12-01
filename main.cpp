@@ -6,7 +6,7 @@ bool comprobarXY(string );
 bool shuffle (string );
 int main()
 {
-    string Z="abc&cba#asd&ds";
+    string Z="abc&cba#asd&dsa#def&fed";
     cout<<shuffle(Z);
     return 0;
 }
@@ -51,7 +51,7 @@ bool comprobarXY(string X)
     }
     else
     {
-        for (i=i+1; i < X.length(); i++)
+        for (i=i+1; !P.vacia() ; i++)
         {
             if (P.tope() != X[i])
                 valido = false;
