@@ -1,63 +1,72 @@
 #include <iostream>
-#include <string>
 #include "piladinamica.h"
+#define N 13
+void invertirpila(Pila<int>&,int ,int );
 using namespace std;
-bool comprobarXY(string );
-bool shuffle (string );
 int main()
 {
-    string Z="abc&cba#asd&dsa#def&fed";
-    cout<<shuffle(Z);
+    Pila<int> P;
+    int original[N]={3,2,2,4,2,4,3,1,4,3,1,4,3};int i,a,b;
+    for(i=0;i<N;i++)
+    {
+        P.push(original[i]);
+    }
+    Pila<int> H;
+    H=P;
+    for(int i=0;!H.vacia();i++)
+    {
+        cout<<H.tope()<<" ";
+        H.pop();
+    }
+    cout<<endl;
+    a=1;b=2;
+    invertirpila(P,a,b);
+    for(int i=0;!P.vacia();i++)
+    {
+        cout<< P.tope() <<" ";
+        P.pop();
+    }
     return 0;
 }
 
-bool shuffle (string Z)
+void invertirpila(Pila<int>& W,int a,int b)
 {
-    long j=0;
-    bool valido=true;
-    while(j<Z.length())
+    Pila<int> AUX,INV;
+    while( !W.vacia() && W.tope()!=a)
     {
-        string S;
-        int g=0;
-        while(Z[j]!='#' && j<Z.length())
-        {
-            S= S + Z[j];
-            g++;
-            j++;
+        AUX.push(W.tope());
+        W.pop();
+    }
+    while(!W.vacia() && W.tope()!=b)
+    {
+        INV.push(W.tope());
+        W.pop();
+    }
+    if(!W.vacia())
+    {
+        INV.push(W.tope());
+        W.pop();
+        while (!INV.vacia() && !W.vacia()) {
+            AUX.push(INV.tope());
+            INV.pop();
         }
-        if(!comprobarXY(S))
-        {
-            j=Z.length()-1;
-            valido= false;
+        while (!W.vacia() && !W.vacia()) {
+            AUX.push(W.tope());
+            W.pop();
         }
-        j++;
-    }
-    return valido;
-}
-
-bool comprobarXY(string X)
-{
-    bool valido=true;
-    int i=0;
-    Pila<char> P;
-    while(X[i]!='&')
-    {
-        P.push(X[i]);
-        i++;
-    }
-    if((i>=(X.length()/2)+1)||i<X.length()/2)
-    {
-        valido=false;
-    }
-    else
-    {
-        for (i=i+1; !P.vacia() ; i++)
-        {
-            if (P.tope() != X[i])
-                valido = false;
-            P.pop();
+        while (!AUX.vacia()) {
+            W.push(AUX.tope());
+            AUX.pop();
         }
-
-    }
-    return valido;
+    } else
+        while (!INV.vacia())
+        {
+            W.push(INV.tope());
+            INV.pop();
+        }
+        while (!AUX.vacia())
+        {
+            W.push(AUX.tope());
+            AUX.pop();
+        }
 }
