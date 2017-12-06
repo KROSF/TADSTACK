@@ -1,72 +1,49 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "piladinamica.h"
-#define N 13
-void invertirpila(Pila<int>&,int ,int );
+void sumafichero(fstream& );
 using namespace std;
+
 int main()
 {
-    Pila<int> P;
-    int original[N]={3,2,2,4,2,4,3,1,4,3,1,4,3};int i,a,b;
-    for(i=0;i<N;i++)
-    {
-        P.push(original[i]);
-    }
-    Pila<int> H;
-    H=P;
-    for(int i=0;!H.vacia();i++)
-    {
-        cout<<H.tope()<<" ";
-        H.pop();
-    }
-    cout<<endl;
-    a=1;b=2;
-    invertirpila(P,a,b);
-    for(int i=0;!P.vacia();i++)
-    {
-        cout<< P.tope() <<" ";
-        P.pop();
-    }
+    string nombre_f="fichero.txt.txt";
+
+    // TENGO QUE OBTENER EL NOMBRE DEL FICHERO QUE YA VOY A MODIFICAR
+
+    fstream f(nombre_f);
+    sumafichero(f);
+    f.close();
     return 0;
 }
 
-void invertirpila(Pila<int>& W,int a,int b)
+void sumafichero(fstream& fichero)
 {
-    Pila<int> AUX,INV;
-    while( !W.vacia() && W.tope()!=a)
+    Pila<int> P,Q,R;
+    fichero>>P>>Q;            //Extraer de f los numeros
+    P.pop();
+    Q.pop();
+    int cont=0;
+    while(!P.vacia()&&!Q.vacia())
     {
-        AUX.push(W.tope());
-        W.pop();
+            R.push((P.tope() + Q.tope() + cont)%10);
+            cont=(P.tope() + Q.tope())/10;
+            P.pop();
+            Q.pop();
     }
-    while(!W.vacia() && W.tope()!=b)
+    if(!P.vacia()||!Q.vacia())
     {
-        INV.push(W.tope());
-        W.pop();
+        if (P.vacia()) {
+            while (!Q.vacia()) {
+                R.push(Q.tope());
+                Q.pop();
+            }
+        } else
+            while (!P.vacia())
+            {
+                R.push(P.tope());
+                P.pop();
+            }
     }
-    if(!W.vacia())
-    {
-        INV.push(W.tope());
-        W.pop();
-        while (!INV.vacia() && !W.vacia()) {
-            AUX.push(INV.tope());
-            INV.pop();
-        }
-        while (!W.vacia() && !W.vacia()) {
-            AUX.push(W.tope());
-            W.pop();
-        }
-        while (!AUX.vacia()) {
-            W.push(AUX.tope());
-            AUX.pop();
-        }
-    } else
-        while (!INV.vacia())
-        {
-            W.push(INV.tope());
-            INV.pop();
-        }
-        while (!AUX.vacia())
-        {
-            W.push(AUX.tope());
-            AUX.pop();
-        }
+    fichero<<R;
 }

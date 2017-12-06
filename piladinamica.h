@@ -1,6 +1,7 @@
 #ifndef EJ1TADCOLA_TADPILADINAMICO_H
 #define EJ1TADCOLA_TADPILADINAMICO_H
 #include <iostream>
+#include <fstream>
 #include <cassert>
 
 template <typename T>
@@ -98,5 +99,30 @@ void Pila<T>::copiar(const Pila<T>& P)
             q = q->sig;
         }
     }
+}
+
+
+
+//OPERADORES SOBRECARGADOS PARA FICHEROS
+using namespace std;
+
+fstream& operator >>(fstream& fe, Pila<int>& P)
+{
+    char cifra;
+
+    while(fe.get(cifra) && cifra!='\n')    //leer caracteres hasta fin de linea
+        P.push(cifra-='0');                 //convierte un dígito en su valor numérico
+    return fe;
+}
+
+fstream& operator <<(fstream& fs,Pila<int> P)
+{
+    while(!P.vacia())
+    {
+        fs<<P.tope();
+        P.pop();
+    }
+    fs<<endl;
+    return fs;
 }
 #endif //EJ1TADCOLA_TADPILADINAMICO_H

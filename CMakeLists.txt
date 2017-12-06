@@ -3,5 +3,5 @@ project(TADSTACK)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp pila.h piladinamica.h piladinamica.h)
+set(SOURCE_FILES main.cpp pila.h piladinamica.h piladinamica.h )
 add_executable(TADSTACK ${SOURCE_FILES})
